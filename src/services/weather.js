@@ -1,6 +1,6 @@
 const { VITE_API_KEY: API_KEY } = import.meta.env;
 
-const BASE_URL = "http://api.weatherapi.com/v1";
+const BASE_URL = "https://api.weatherapi.com/v1";
 const RESOURCE_PATH = "forecast.json";
 
 function forecast({ location = "Luesia", days = 7 } = {}) {
