@@ -10,7 +10,11 @@ function forecast({ locationToFetch, days = 7 } = {}) {
   const url = `${BASE_URL}/${RESOURCE_PATH}${apiKey}${queryParams}`;
 
   return fetch(url).then(function (response) {
-    return response.json();
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error("No matching location found.");
+    }
   });
 }
 

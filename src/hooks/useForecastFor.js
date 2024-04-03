@@ -7,8 +7,9 @@ export function useForecastFor({ searchLocation } = {}) {
   const [isLoading, setIsLoading] = useState(true);
   const [location, setLocation] = useState(null);
   const [weather, setWeather] = useState(null);
+  const [error, setError] = useState(null);
 
-  const { currentLocation, error } = useCurrentLocation();
+  const { currentLocation, error: errorCurrentLocation } = useCurrentLocation();
 
   function handleLoadingStatus(status) {
     setIsLoading(status);
@@ -24,14 +25,16 @@ export function useForecastFor({ searchLocation } = {}) {
 
   useEffect(() => {
     const locationToFetch = searchLocation || currentLocation;
+
     if (locationToFetch) {
       weatherService
         .forecast({ locationToFetch })
         .then(({ location, current: weather }) => {
           handleLocationUpdate(locationMapper.toDomain(location));
           handleWeatherUpdate(weatherMapper.toDomain(weather));
-          handleLoadingStatus(false);
-        });
+        })
+        .catch(({ message }) => setError(message))
+        .finally(() => handleLoadingStatus(false));
     }
   }, [searchLocation, currentLocation]);
 
@@ -39,6 +42,6 @@ export function useForecastFor({ searchLocation } = {}) {
     isLoading,
     location,
     weather,
-    error,
+    error: error || errorCurrentLocation,
   };
 }
