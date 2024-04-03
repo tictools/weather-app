@@ -1,3 +1,4 @@
+export { useSearchLocationForm } from "../hooks";
 export { ButtonSetContainer } from "./ButtonSetContainer";
 export { LocationSection } from "./LocationSection";
 export { MainHeader } from "./MainHeader";
