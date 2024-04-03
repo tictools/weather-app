@@ -1,28 +1,36 @@
+import styles from "./WeatherSection.module.css";
+
 export function WeatherSection({ weather, settings }) {
   const { temperatureScale, unitSystem } = settings;
 
   return (
-    <section>
-      <h2>Weather</h2>
-      <p>
-        {`Current temperature: ${weather.temperature[temperatureScale].formattedValue} (feels like ${weather.feelsLike[temperatureScale].formattedValue})`}
-      </p>
-      <div>
-        <img
-          alt={weather.condition.text}
-          src={weather.condition.icon}
-          loading="lazy"
-        />
+    <section className={styles["weather__wrapper"]}>
+      <div className={styles["weather__current"]}>
+        <div className={styles["weather__current-condition"]}>
+          <img
+            alt={weather.condition.text}
+            src={weather.condition.icon}
+            loading="lazy"
+          />
+          <p>{weather.condition.text}</p>
+        </div>
+        <div className={styles["weather__current-data"]}>
+          <div>
+            <span>
+              {`Wind: ${weather.wind[unitSystem].speed.formattedValue}`}
+            </span>
+            <span className={styles["weather__current-direction"]}>
+              {weather.wind.direction}
+            </span>
+          </div>
+          <p
+            className={styles["weather__temperature"]}
+          >{`${weather.temperature[temperatureScale].formattedValue}`}</p>
+          <p className={styles["weather__feels-like"]}>
+            {`(feels like ${weather.feelsLike[temperatureScale].formattedValue})`}
+          </p>
+        </div>
       </div>
-      <div>
-        Wind
-        <ul>
-          <li>Direction: {weather.wind.direction}</li>
-          <li>Speed: {weather.wind[unitSystem].speed.formattedValue}</li>
-          <li>Degree: {weather.wind.degree.formattedValue}</li>
-        </ul>
-      </div>
-      <small>Last update: {weather.lastUpdated}</small>
     </section>
   );
 }

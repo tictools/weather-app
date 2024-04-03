@@ -2,10 +2,13 @@
 import {
   ButtonSetContainer,
   LocationSection,
+  MainHeader,
   WeatherSection,
 } from "./components";
 import { useForecast, useTemperatureScale, useUnitSystem } from "./hooks";
 import { TEMPERATURE_SCALE, UNIT_SYSTEM } from "./mappers/constants";
+
+import styles from "./App.module.css";
 
 function App() {
   const { CELSIUS } = TEMPERATURE_SCALE;
@@ -33,11 +36,13 @@ function App() {
   return (
     <>
       <header>
-        <h1>Weather App</h1>
+        <MainHeader title="Weather Outlook" />
       </header>
-      <main>
+      <main className={styles["wrapper"]}>
         <ButtonSetContainer
+          temperatureScale={temperatureScale}
           toggleTemperatureScale={toggleTemperatureScale}
+          unitSystem={unitSystem}
           toggleUnitSystem={toggleUnitSystem}
         />
         <LocationSection location={location} />
@@ -46,6 +51,7 @@ function App() {
           settings={{ temperatureScale, unitSystem }}
         />
       </main>
+      <small>Last update: {weather.lastUpdated}</small>
     </>
   );
 }

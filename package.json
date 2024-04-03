@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource-variable/outfit": "^5.0.12",
+    "@fontsource-variable/roboto-flex": "^5.0.14",
     "@vis.gl/react-google-maps": "0.8.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
