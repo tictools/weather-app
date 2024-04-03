@@ -10,8 +10,8 @@ export function LocationSection({ location }) {
       </div>
       <div className={styles["location__coordinates"]}>
         <div>
-          <span> {location.latitude}° lat</span> |
-          <span> {location.longitude}° lon</span>
+          <span> {location.latitude}° latitude</span> ||
+          <span> {location.longitude}° longitude</span>
         </div>
         <a
           href={`http://www.google.com/maps/place/${location.latitude},${location.longitude}`}
