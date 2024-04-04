@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Navigator } from "../services/Navigator";
+import { Navigator, ReverseGeocodeService } from "../services";
 
 export function useCurrentLocation() {
   const [location, setLocation] = useState(null);
@@ -7,15 +7,16 @@ export function useCurrentLocation() {
   const [loading, setLoading] = useState(false);
 
   function onSuccess(position) {
+    const { latitude, longitude } = position.coords;
+    const { getLanguage } = Navigator;
+
     setLoading(true);
 
-    const lang = Navigator.getLanguage();
-
-    globalThis
-      .fetch(
-        `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&localityLanguage=${lang}`
-      )
-      .then((response) => response.json())
+    ReverseGeocodeService.getLocalityFrom({
+      lat: latitude,
+      lon: longitude,
+      lang: getLanguage(),
+    })
       .then(({ city }) => setLocation(city))
       .catch((error) => setError(error.name))
       .finally(() => {
