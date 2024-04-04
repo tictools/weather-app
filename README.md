@@ -4,8 +4,9 @@ This is a weather app developed with Vite and React.
 
 ## API
 
-https://www.weatherapi.com/
+- weather: https://www.weatherapi.com/
+- Reverse Geocoding: https://www.bigdatacloud.com/free-api/free-reverse-geocode-to-city-api
 
 ## Deploy
 
-TBD
+https://weather-private-app.netlify.app/
