@@ -16,8 +16,8 @@ export function WeatherSection({ weather, settings }) {
         </div>
         <div className={styles["weather__current-data"]}>
           <div>
-            <span>
-              {`Wind: ${weather.wind[unitSystem].speed.formattedValue}`}
+            <span className={styles["weather__current-speed"]}>
+              {weather.wind[unitSystem].speed.formattedValue}
             </span>
             <span className={styles["weather__current-direction"]}>
               {weather.wind.direction}
@@ -27,7 +27,7 @@ export function WeatherSection({ weather, settings }) {
             className={styles["weather__temperature"]}
           >{`${weather.temperature[temperatureScale].formattedValue}`}</p>
           <p className={styles["weather__feels-like"]}>
-            {`(feels like ${weather.feelsLike[temperatureScale].formattedValue})`}
+            {`feels like ${weather.feelsLike[temperatureScale].formattedValue}`}
           </p>
         </div>
       </div>

@@ -36,6 +36,12 @@
   align-items: center;
 }
 
+.weather__current-data > * {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .weather__current-data > p {
   margin: 0;
 }
@@ -47,6 +53,23 @@
 
 .weather__feels-like {
   font-size: 0.85rem;
+}
+
+.weather__current-speed {
+  position: relative;
+  padding-left: 1.75rem;
+}
+
+.weather__current-speed::before {
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+  background: url(/src/assets/windPowerRounded.svg);
+  background-repeat: no-repeat;
+  top: 0.25rem;
+  left: 0.5rem;
+  background-size: 1rem;
+  content: "";
 }
 
 .weather__current-direction {
