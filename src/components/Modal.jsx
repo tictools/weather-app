@@ -6,8 +6,6 @@ const STATUS = {
 };
 
 export function Modal({ message, status }) {
-  console.log({ status });
-
   const statusClassName =
     status === STATUS.LOADING
       ? "modal__wrapper--loading"
