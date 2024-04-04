@@ -1,7 +1,11 @@
 import styles from "./WeatherSection.module.css";
 
-export function WeatherSection({ weather, settings }) {
+export function WeatherSection({ weather, settings, error }) {
   const { temperatureScale, unitSystem } = settings;
+
+  if (error) {
+    return <p>{error}</p>;
+  }
 
   return (
     <section className={styles["weather__wrapper"]}>

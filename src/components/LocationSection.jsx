@@ -1,7 +1,9 @@
 import styles from "./LocationSection.module.css";
 import { MapMarker } from "./icons/MapMarker";
 
-export function LocationSection({ location }) {
+export function LocationSection({ location, shouldRender }) {
+  if (!shouldRender) return null;
+
   return (
     <section className={styles["location__wrapper"]}>
       <div className={styles["location__name"]}>
