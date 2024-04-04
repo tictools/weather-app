@@ -5,6 +5,7 @@ import {
   ButtonSetContainer,
   LocationSection,
   MainHeader,
+  Modal,
   WeatherSection,
 } from "./components";
 import {
@@ -27,9 +28,10 @@ function App() {
     useTemperatureScale(CELSIUS);
 
   const { searchLocation, updateSearchLocation } = useSearchLocation();
-  const { isLoading, location, weather, error } = useForecastFor({
-    searchLocation,
-  });
+  const { isLoading, location, weather, error, errorCurrentLocation } =
+    useForecastFor({
+      searchLocation,
+    });
 
   const toggleTemperatureScale = ({ target }) => {
     const scaleId = target.dataset.id;
@@ -41,12 +43,12 @@ function App() {
     handleUnitSystemUpdate(systemId);
   };
 
-  if (isLoading) {
-    return "Loading...";
+  if (errorCurrentLocation) {
+    return <Modal message={errorCurrentLocation} status="warning" />;
   }
 
-  if (error) {
-    return <p>{error}</p>;
+  if (isLoading && !errorCurrentLocation) {
+    return <Modal message="Loading..." status="loading" />;
   }
 
   return (
@@ -60,10 +62,11 @@ function App() {
           toggleUnitSystem={toggleUnitSystem}
         />
         <SearchLocationForm handleUpdateLocation={updateSearchLocation} />
-        <LocationSection location={location} />
+        <LocationSection location={location} shouldRender={!error} />
         <WeatherSection
           weather={weather}
           settings={{ temperatureScale, unitSystem }}
+          error={error}
         />
       </main>
       <small>Last update: {weather.lastUpdated}</small>
