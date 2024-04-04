@@ -1,4 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { version } from "../package.json";
+
 import {
   ButtonSetContainer,
   LocationSection,
@@ -49,9 +51,7 @@ function App() {
 
   return (
     <>
-      <header>
-        <MainHeader title="Weather Outlook" />
-      </header>
+      <MainHeader title="Weather Outlook" version={version} />
       <main className={styles["wrapper"]}>
         <ButtonSetContainer
           temperatureScale={temperatureScale}
