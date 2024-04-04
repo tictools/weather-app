@@ -1,3 +1,3 @@
 export { Navigator } from "./Navigator.js";
-export { ReverseGeocodeService } from "./ReverseGeocode.js";
-export { WeatherService } from "./Weather.js";
+export { ReverseGeocodeService } from "./ReverseGeocodeService.js";
+export { WeatherService } from "./WeatherService.js";
