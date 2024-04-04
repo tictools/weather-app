@@ -1,7 +1,9 @@
 import styles from "./LocationSection.module.css";
 import { MapMarker } from "./icons/MapMarker";
 
-export function LocationSection({ location }) {
+export function LocationSection({ location, shouldRender }) {
+  if (!shouldRender) return null;
+
   return (
     <section className={styles["location__wrapper"]}>
       <div className={styles["location__name"]}>
@@ -10,8 +12,8 @@ export function LocationSection({ location }) {
       </div>
       <div className={styles["location__coordinates"]}>
         <div>
-          <span> {location.latitude}° lat</span> |
-          <span> {location.longitude}° lon</span>
+          <span> {location.latitude}° latitude</span> ||
+          <span> {location.longitude}° longitude</span>
         </div>
         <a
           href={`http://www.google.com/maps/place/${location.latitude},${location.longitude}`}
