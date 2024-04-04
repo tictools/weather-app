@@ -74,7 +74,7 @@
 
 .weather__current-direction {
   position: relative;
-  padding-left: 2rem;
+  padding-left: 1.5rem;
 }
 
 .weather__current-direction::before {
@@ -83,9 +83,9 @@
   position: absolute;
   background: url(/src/assets/directionSolid.svg);
   background-repeat: no-repeat;
-  top: 0.1rem;
-  left: 0.5rem;
-  background-size: 1rem;
+  top: 0.45rem;
+  left: 0.25rem;
+  background-size: 0.75rem;
   content: "";
   transform: rotate(90deg);
 }
