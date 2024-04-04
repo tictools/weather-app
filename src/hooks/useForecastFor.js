@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { locationMapper, weatherMapper } from "../mappers";
-import weatherService from "../services/weather";
+import { WeatherService } from "../services";
 import { useCurrentLocation } from "./useCurrentLocation";
 
 export function useForecastFor({ searchLocation } = {}) {
@@ -33,8 +33,7 @@ export function useForecastFor({ searchLocation } = {}) {
     if (locationToFetch) {
       handleErrorUpdateAs(null);
 
-      weatherService
-        .forecast({ locationToFetch })
+      WeatherService.forecast({ locationToFetch })
         .then(({ location, current: weather }) => {
           handleLocationUpdateWith(locationMapper.toDomain(location));
           handleWeatherUpdateWith(weatherMapper.toDomain(weather));
