@@ -8,6 +8,7 @@ export function useForecastFor({ searchLocation } = {}) {
   const [location, setLocation] = useState(null);
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
+  const [astro, setAstro] = useState(null);
   const [error, setError] = useState(null);
 
   const { currentLocation, error: errorCurrentLocation } = useCurrentLocation();
@@ -18,6 +19,10 @@ export function useForecastFor({ searchLocation } = {}) {
 
   function updateLocationWith(location) {
     setLocation(location);
+  }
+
+  function updateAstroWith(astro) {
+    setAstro(astro);
   }
 
   function updateWeatherWith(weather) {
@@ -39,23 +44,45 @@ export function useForecastFor({ searchLocation } = {}) {
       handleErrorUpdateAs(null);
 
       WeatherService.forecast({ locationToFetch })
-        .then(({ location, current: weather, forecast }) => {
-          const { forecastday } = forecast;
-          updateLocationWith(locationMapper.toDomain(location));
-          updateWeatherWith(weatherMapper.toDomain(weather));
-          updateForecastWith(forecastday.map(forecastMapper.toDomain));
-        })
+        .then(
+          ({
+            location: apiLocationResponse,
+            current: apiWeatherResponse,
+            forecast,
+          }) => {
+            const { forecastday } = forecast;
+            const [currentForecastDay, ...restOfForeCastDays] = forecastday;
+
+            const { astro } = currentForecastDay;
+            const { sunrise, sunset } = astro;
+            const apiAstroResponse = { sunrise, sunset };
+
+            updateLocationWith(
+              locationMapper.toDomain({
+                apiLocationResponse,
+              })
+            );
+            updateAstroWith(
+              locationMapper.toDomain({
+                apiAstroResponse,
+              })
+            );
+            updateWeatherWith(weatherMapper.toDomain({ apiWeatherResponse }));
+            updateForecastWith(restOfForeCastDays.map(forecastMapper.toDomain));
+          }
+        )
         .catch(({ message }) => handleErrorUpdateAs(message))
         .finally(() => handleLoadingStatusAs(false));
     }
   }, [searchLocation, currentLocation]);
 
   return {
-    isLoading,
-    location,
-    weather,
-    forecast,
     error,
     errorCurrentLocation,
+    isLoading,
+    astro,
+    forecast,
+    location,
+    weather,
   };
 }

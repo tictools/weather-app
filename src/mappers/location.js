@@ -1,4 +1,4 @@
-function toDomain(apiLocationResponse) {
+function toDomain({ apiLocationResponse }) {
   return {
     name: apiLocationResponse?.name,
     region: apiLocationResponse?.region,

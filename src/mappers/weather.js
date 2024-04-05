@@ -10,7 +10,7 @@ import {
   toBoolean,
 } from "./formatters";
 
-function toDomain(apiWeatherResponse) {
+function toDomain({ apiWeatherResponse }) {
   return {
     lastUpdated: apiWeatherResponse?.last_updated,
     temperature: {
