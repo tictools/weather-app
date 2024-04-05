@@ -1,11 +1,22 @@
+import { IntlService, Navigator } from "../services";
 import { TEMPERATURE_SCALE } from "./constants";
-import { formatToTemperature, formatToTemperatureRange } from "./formatters";
+import {
+  formatToTemperature,
+  formatToTemperatureRange,
+  formatToWeekDay,
+} from "./formatters";
 
 function toDomain(forecast) {
   const { date_epoch, day } = forecast;
+  const lang = Navigator.getLanguage();
 
   return {
     id: date_epoch,
+    date: formatToWeekDay({
+      timestamp: date_epoch * 1000,
+      lang,
+      intlFormatter: IntlService.formatDateTime,
+    }),
     condition: {
       text: day?.condition.text,
       icon: day?.condition.icon,
