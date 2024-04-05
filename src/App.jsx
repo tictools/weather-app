@@ -3,6 +3,7 @@ import { version } from "../package.json";
 
 import {
   ButtonSetContainer,
+  ForecastSection,
   LocationSection,
   MainHeader,
   Modal,
@@ -18,6 +19,7 @@ import { TEMPERATURE_SCALE, UNIT_SYSTEM } from "./mappers/constants";
 
 import styles from "./App.module.css";
 import { SearchLocationForm } from "./components/SearchLocationForm";
+// import { forecast, location, weather } from "./mocks";
 
 function App() {
   const { CELSIUS } = TEMPERATURE_SCALE;
@@ -28,10 +30,22 @@ function App() {
     useTemperatureScale(CELSIUS);
 
   const { searchLocation, updateSearchLocation } = useSearchLocation();
-  const { isLoading, location, weather, error, errorCurrentLocation } =
-    useForecastFor({
-      searchLocation,
-    });
+  const {
+    isLoading,
+    location,
+    weather,
+    forecast,
+    error,
+    errorCurrentLocation,
+  } = useForecastFor({
+    searchLocation,
+  });
+
+  //mock
+  // const errorCurrentLocation = false;
+  // const isLoading = false;
+  // const error = false;
+  //end mock
 
   const toggleTemperatureScale = ({ target }) => {
     const scaleId = target.dataset.id;
@@ -68,6 +82,7 @@ function App() {
           settings={{ temperatureScale, unitSystem }}
           error={error}
         />
+        <ForecastSection forecast={forecast} settings={{ temperatureScale }} />
       </main>
       <small>Last update: {weather.lastUpdated}</small>
     </>
