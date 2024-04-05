@@ -5,4 +5,6 @@ export { formatToPrecipitation } from "./formatToPrecipitation";
 export { formatToPressure } from "./formatToPressure";
 export { formatToSpeed } from "./formatToSpeed";
 export { formatToTemperature } from "./formatToTemperature";
+export { formatToTemperatureRange } from "./formatToTemperatureRange";
+export { formatToWeekDay } from "./formatToWeekDay";
 export { toBoolean } from "./toBoolean";
