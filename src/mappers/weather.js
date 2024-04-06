@@ -140,9 +140,6 @@ function toDomain({ apiWeatherResponse }) {
     cloud: {
       rawValue: apiWeatherResponse?.cloud,
     },
-    uv: {
-      rawValue: apiWeatherResponse?.uv,
-    },
   };
 }
 

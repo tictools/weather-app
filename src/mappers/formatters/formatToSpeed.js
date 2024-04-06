@@ -1,10 +1,19 @@
 import { UNIT_SYSTEM } from "../constants";
+import { roundInCase } from "../helpers";
 
-export function formatToSpeed({ unitSystem = UNIT_SYSTEM.METRIC, value }) {
+export function formatToSpeed({
+  unitSystem = UNIT_SYSTEM.METRIC,
+  value,
+  isRounded,
+}) {
   const isMetricSystem = unitSystem === UNIT_SYSTEM.METRIC;
 
   const formattedUnit = isMetricSystem ? "kph" : "mph";
-  const formattedValue = `${value}/${formattedUnit}`;
+
+  const roundedValue = roundInCase({ flag: isRounded, value });
+  // const roundedValue = isRounded ? MathService.round(value) : value;
+
+  const formattedValue = `${roundedValue}/${formattedUnit}`;
 
   return formattedValue;
 }
