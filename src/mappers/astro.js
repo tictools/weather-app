@@ -1,7 +1,12 @@
+import {
+  formatToSunriseHourCycle,
+  formatToSunsetHourCycle,
+} from "./formatters";
+
 function toDomain({ apiAstroResponse }) {
   return {
-    sunrise: apiAstroResponse.sunrise,
-    sunset: apiAstroResponse.sunset,
+    sunrise: formatToSunriseHourCycle(apiAstroResponse.sunrise),
+    sunset: formatToSunsetHourCycle(apiAstroResponse.sunset),
   };
 }
 
