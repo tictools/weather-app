@@ -1,6 +1,6 @@
 import styles from "./WeatherSection.module.css";
 
-export function WeatherSection({ weather, settings, error }) {
+export function WeatherSection({ astro, weather, settings, error }) {
   const { temperatureScale, unitSystem } = settings;
 
   return (
@@ -15,7 +15,18 @@ export function WeatherSection({ weather, settings, error }) {
               src={weather.condition.icon}
               loading="lazy"
             />
-            <p>{weather.condition.text}</p>
+            <div className={styles["weather__current-astro"]}>
+              <p
+                className={`${styles["weather__current-sun"]} ${styles["weather__current-sunrise"]}`}
+              >
+                {astro.sunrise}
+              </p>
+              <p
+                className={`${styles["weather__current-sun"]} ${styles["weather__current-sunset"]}`}
+              >
+                {astro.sunset}
+              </p>
+            </div>
           </div>
           <div className={styles["weather__current-data"]}>
             <div>

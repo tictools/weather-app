@@ -42,3 +42,9 @@
   justify-content: center;
   font-weight: 600;
 }
+
+@media (prefers-color-scheme: light) {
+  .forecast__item {
+    background: linear-gradient(to bottom, var(--color-grey-silver) 10%, white);
+  }
+}

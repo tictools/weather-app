@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { forecastMapper, locationMapper, weatherMapper } from "../mappers";
+import {
+  astroMapper,
+  forecastMapper,
+  locationMapper,
+  weatherMapper,
+} from "../mappers";
 import { WeatherService } from "../services";
 import { useCurrentLocation } from "./useCurrentLocation";
 
@@ -63,7 +68,7 @@ export function useForecastFor({ searchLocation } = {}) {
               })
             );
             updateAstroWith(
-              locationMapper.toDomain({
+              astroMapper.toDomain({
                 apiAstroResponse,
               })
             );
