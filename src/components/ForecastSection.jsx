@@ -1,7 +1,7 @@
 import styles from "./ForecastSection.module.css";
 
 export function ForecastSection({ forecast, settings }) {
-  const { temperatureScale } = settings;
+  const { temperatureScale, unitSystem } = settings;
 
   return (
     <section className={styles["forecast__wrapper"]}>
@@ -18,6 +18,14 @@ export function ForecastSection({ forecast, settings }) {
                 alt={dailyForecast.condition.text}
                 width={32}
               />
+            </div>
+            <div className={styles["forecast__summary"]}>
+              <div>{dailyForecast.uv.rawValue}</div>
+              <div>{dailyForecast.humidity.formattedValue}</div>
+              <div>{dailyForecast.maxWind[unitSystem].formattedValue}</div>
+              <div>
+                {dailyForecast.maxPrecipitation[unitSystem].formattedValue}
+              </div>
             </div>
             <div className={styles["forecast__range"]}>
               <span>
