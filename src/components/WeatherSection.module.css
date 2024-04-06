@@ -21,19 +21,57 @@
 }
 
 .weather__current-condition {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-rows: 1fr 2.5rem;
+  justify-items: center;
 }
 
 .weather__current-condition > p {
   margin: 0;
 }
 
+.weather__current-astro {
+  self-align: flex-end;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.weather__current-sun {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  margin: 0;
+  padding-top: 1rem;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.weather__current-sunrise::before,
+.weather__current-sunset::before {
+  position: absolute;
+  width: 1.25rem;
+  height: 1.25rem;
+  top: 0;
+  left: 5px;
+  background-repeat: no-repeat;
+  background-size: 1.25rem;
+  content: "";
+}
+
+.weather__current-sunrise::before {
+  background-image: url("../assets/sunriseDarkMode.svg");
+}
+
+.weather__current-sunset::before {
+  background-image: url("../assets/sunsetDarkMode.svg");
+}
+
 .weather__current-data {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
 }
 
 .weather__current-data > * {
@@ -92,7 +130,12 @@
 
 @media (prefers-color-scheme: light) {
   .weather__wrapper {
-    background: linear-gradient(to bottom, var(--color-grey-slate) 10%, white);
+    background: linear-gradient(
+      to bottom,
+      var(--color-grey-slate),
+      var(--color-grey-silver) 50%,
+      white
+    );
   }
 
   .weather__current-speed::before {
@@ -101,5 +144,13 @@
 
   .weather__current-direction::before {
     background-image: url("../assets/windDirectionLightMode.svg");
+  }
+
+  .weather__current-sunrise::before {
+    background-image: url("../assets/sunriseLightMode.svg");
+  }
+
+  .weather__current-sunset::before {
+    background-image: url("../assets/sunsetLightMode.svg");
   }
 }

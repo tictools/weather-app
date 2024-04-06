@@ -1,4 +1,4 @@
-export function formatToWeekDay({ timestamp, lang, intlFormatter }) {
+export function formatToWeekDayDate({ timestamp, lang, intlFormatter }) {
   const options = { weekday: "long" };
   const weekday = intlFormatter({ timestamp, lang, options });
 

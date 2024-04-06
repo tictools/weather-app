@@ -1,20 +1,24 @@
 import { IntlService, Navigator } from "../services";
 import { TEMPERATURE_SCALE } from "./constants";
 import {
+  formatToCutsomDate,
   formatToTemperature,
   formatToTemperatureRange,
-  formatToWeekDay,
 } from "./formatters";
 
-function toDomain(forecast) {
-  const { date_epoch, day } = forecast;
+function toDomain(apiForecastItemResponse) {
+  const { date_epoch, day } = apiForecastItemResponse;
   const lang = Navigator.getLanguage();
 
   return {
     id: date_epoch,
-    date: formatToWeekDay({
+    date: formatToCutsomDate({
       timestamp: date_epoch * 1000,
       lang,
+      options: {
+        month: "numeric",
+        day: "numeric",
+      },
       intlFormatter: IntlService.formatDateTime,
     }),
     condition: {

@@ -31,12 +31,13 @@ function App() {
 
   const { searchLocation, updateSearchLocation } = useSearchLocation();
   const {
-    isLoading,
-    location,
-    weather,
-    forecast,
     error,
     errorCurrentLocation,
+    isLoading,
+    astro,
+    forecast,
+    location,
+    weather,
   } = useForecastFor({
     searchLocation,
   });
@@ -78,6 +79,7 @@ function App() {
         <SearchLocationForm handleUpdateLocation={updateSearchLocation} />
         <LocationSection location={location} shouldRender={!error} />
         <WeatherSection
+          astro={astro}
           weather={weather}
           settings={{ temperatureScale, unitSystem }}
           error={error}
