@@ -8,23 +8,32 @@
 
 .forecast__item {
   width: 100%;
-  height: 4rem;
+  height: 5rem;
+  padding: 0.5rem 0;
   display: grid;
-  grid-template-columns: 0.5fr auto 1fr;
+  grid-template-columns: max-content 1fr 4rem;
   align-items: center;
-  padding: 0 1rem;
   background: linear-gradient(
     to bottom,
     var(--color-grey-slate) 5%,
     var(--color-grey-charcoal)
   );
   border-radius: 0.25rem;
+
+  > div {
+    height: 100%;
+    padding: 0 0.75rem;
+  }
+
+  > div:not(:last-child) {
+    border-right: 1px solid var(--color-grey-silver);
+  }
 }
 
 .forecast__weekday {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
 }
 
@@ -35,16 +44,98 @@
   justify-content: center;
 }
 
+.forecast__summary {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  justify-items: center;
+  gap: 0.5rem 1.25rem;
+  font-size: 1rem;
+
+  > div {
+    position: relative;
+    width: 100%;
+    padding-left: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 0.8rem;
+    font-weight: 400;
+  }
+}
+
+.forecast__summary-item::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-repeat: no-repeat;
+  background-size: 1.5rem;
+}
+
+.forecast__summary-uv::before {
+  background-image: url("../assets/uvIndexDarkMode.svg");
+}
+
+.forecast__summary-humidity::before {
+  background-image: url("../assets/humidityPercentageDarkMode.svg");
+}
+
+.forecast__summary-wind::before {
+  background-image: url("../assets/windSpeedDarkMode.svg");
+}
+
+.forecast__summary-rain::before {
+  background-image: url("../assets/rainyOutlineDarkMode.svg");
+}
+
 .forecast__range {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
+  gap: 0.5rem;
   font-weight: 600;
+
+  > span:is(:first-child) {
+    color: var(--color-blue-light);
+  }
+
+  > span:is(:last-child) {
+    color: var(--color-red-light);
+  }
 }
 
 @media (prefers-color-scheme: light) {
   .forecast__item {
     background: linear-gradient(to bottom, var(--color-grey-silver) 10%, white);
+  }
+
+  .forecast__summary-uv::before {
+    background-image: url("../assets/uvIndexLightMode.svg");
+  }
+
+  .forecast__summary-humidity::before {
+    background-image: url("../assets/humidityPercentageLightMode.svg");
+  }
+
+  .forecast__summary-wind::before {
+    background-image: url("../assets/windSpeedLightMode.svg");
+  }
+
+  .forecast__summary-rain::before {
+    background-image: url("../assets/rainyOutlineLightMode.svg");
+  }
+
+  .forecast__range {
+    > span:is(:first-child) {
+      color: var(--color-blue-dark);
+    }
+
+    > span:is(:last-child) {
+      color: var(--color-red-dark);
+    }
   }
 }

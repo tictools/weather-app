@@ -1,31 +1,38 @@
 import styles from "./ForecastSection.module.css";
+import { ForecastSummary } from "./ForecastSummary";
+import { ForecastWeekday } from "./ForecastWeekday";
 
-export function ForecastSection({ forecast, settings }) {
-  const { temperatureScale } = settings;
+export function ForecastSection({ forecast, settings, shouldRender }) {
+  const { temperatureScale, unitSystem } = settings;
+
+  if (!shouldRender) return null;
 
   return (
     <section className={styles["forecast__wrapper"]}>
       {forecast.map((dailyForecast) => {
+        const {
+          condition,
+          date,
+          id,
+          maxPrecipitation,
+          maxTemperature,
+          maxWind,
+          minTemperature,
+          uv,
+        } = dailyForecast;
+
         return (
-          <div key={dailyForecast.id} className={styles["forecast__item"]}>
-            <div className={styles["forecast__weekday"]}>
-              <span>{dailyForecast.date}</span>
-            </div>
-            <div className={styles["forecast__condition"]}>
-              <img
-                loading="lazy"
-                src={dailyForecast.condition.icon}
-                alt={dailyForecast.condition.text}
-                width={32}
-              />
-            </div>
+          <div key={id} className={styles["forecast__item"]}>
+            <ForecastWeekday date={date} condition={condition} />
+            <ForecastSummary
+              uv={uv.rawValue}
+              humidity={maxPrecipitation[unitSystem].formattedValue}
+              maxWind={maxWind[unitSystem].formattedValue}
+              maxPrecipitation={maxPrecipitation[unitSystem].formattedValue}
+            />
             <div className={styles["forecast__range"]}>
-              <span>
-                {
-                  dailyForecast.rangeTemperature[temperatureScale]
-                    .formattedValue
-                }
-              </span>
+              <span>{minTemperature[temperatureScale].formattedValue}</span>
+              <span>{maxTemperature[temperatureScale].formattedValue}</span>
             </div>
           </div>
         );

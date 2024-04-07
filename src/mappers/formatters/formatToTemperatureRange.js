@@ -5,9 +5,18 @@ export function formatToTemperatureRange({
   scale = TEMPERATURE_SCALE.CELSIUS,
   min,
   max,
+  isRounded,
 }) {
-  const formattedMinValue = formatToTemperature({ scale, value: min });
-  const formattedMaxValue = formatToTemperature({ scale, value: max });
+  const formattedMinValue = formatToTemperature({
+    isRounded,
+    scale,
+    value: min,
+  });
+  const formattedMaxValue = formatToTemperature({
+    isRounded,
+    scale,
+    value: max,
+  });
 
   return `${formattedMinValue} - ${formattedMaxValue}`;
 }
