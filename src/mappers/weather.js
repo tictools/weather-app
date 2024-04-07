@@ -32,12 +32,14 @@ function toDomain({ apiWeatherResponse }) {
       [TEMPERATURE_SCALE.CELSIUS]: {
         rawValue: apiWeatherResponse?.feelslike_c,
         formattedValue: formatToTemperature({
+          isRounded: true,
           value: apiWeatherResponse?.feelslike_c,
         }),
       },
       [TEMPERATURE_SCALE.FAHRENHEIT]: {
         rawValue: apiWeatherResponse?.feelslike_f,
         formattedValue: formatToTemperature({
+          isRounded: true,
           scale: TEMPERATURE_SCALE.FAHRENHEIT,
           value: apiWeatherResponse?.feelslike_f,
         }),

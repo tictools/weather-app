@@ -21,7 +21,7 @@
   grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 1px;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
   overflow: auto;
   height: 2rem;
 }

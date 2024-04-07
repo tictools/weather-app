@@ -17,7 +17,7 @@
   display: grid;
   grid-template-columns: 0.75fr 1.25fr;
   gap: 0.5rem;
-  padding: 1rem 0;
+  padding: 1rem 0.25rem;
 }
 
 .weather__current-condition {
@@ -84,12 +84,7 @@
   margin: 0;
 }
 
-.weather__temperature {
-  font-size: 2rem;
-  font-weight: 600;
-}
-
-.weather__feels-like {
+.weather__current-wind {
   font-size: 0.85rem;
 }
 
@@ -128,6 +123,72 @@
   transform: rotate(90deg);
 }
 
+.weather__current-temperature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 0.25rem;
+  font-size: 2rem;
+  font-weight: 600;
+  border-bottom: 1px solid var(--color-grey-silver);
+}
+
+.weather__feels-like {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.85rem;
+}
+
+.weather__feels-like::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1rem;
+  height: 1rem;
+  background-image: url("../assets/temperatureFeelsLikeDarkMode.svg");
+  background-repeat: no-repeat;
+  background-size: 1rem;
+  content: "";
+}
+
+.weather__current-summary {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  padding: 0 0.25rem;
+  font-size: 0.85rem;
+}
+
+.weather__summary-item {
+  position: relative;
+  padding: 0.25rem 0 0 1.25rem;
+}
+
+.weather__summary-item::before {
+  position: absolute;
+  top: 0.4rem;
+  left: 0;
+  width: 1rem;
+  height: 1rem;
+  background-repeat: no-repeat;
+  background-size: 1rem;
+  content: "";
+}
+
+.weather__summary-item--humidity::before {
+  background-image: url("../assets/humidityPercentageDarkMode.svg");
+}
+
+.weather__summary-item--rain::before {
+  background-image: url("../assets/rainyOutlineDarkMode.svg");
+}
+
+.weather__summary-item--pressure::before {
+  left: 4px;
+  background-image: url("../assets/pressureDarkMode.svg");
+}
+
 @media (prefers-color-scheme: light) {
   .weather__wrapper {
     background: linear-gradient(
@@ -152,5 +213,25 @@
 
   .weather__current-sunset::before {
     background-image: url("../assets/sunsetLightMode.svg");
+  }
+
+  .weather__current-temperature {
+    border-bottom: 1px solid var(--color-grey-slate);
+  }
+
+  .weather__feels-like::before {
+    background-image: url("../assets/temperatureFeelsLikeLightMode.svg");
+  }
+
+  .weather__summary-item--humidity::before {
+    background-image: url("../assets/humidityPercentageLightMode.svg");
+  }
+
+  .weather__summary-item--rain::before {
+    background-image: url("../assets/rainyOutlineLightMode.svg");
+  }
+
+  .weather__summary-item--pressure::before {
+    background-image: url("../assets/pressureLightMode.svg");
   }
 }

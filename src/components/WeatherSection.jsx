@@ -29,7 +29,7 @@ export function WeatherSection({ astro, weather, settings, error }) {
             </div>
           </div>
           <div className={styles["weather__current-data"]}>
-            <div>
+            <div className={styles["weather__current-wind"]}>
               <span className={styles["weather__current-speed"]}>
                 {weather.wind[unitSystem].speed.formattedValue}
               </span>
@@ -37,12 +37,31 @@ export function WeatherSection({ astro, weather, settings, error }) {
                 {weather.wind.direction}
               </span>
             </div>
-            <p
-              className={styles["weather__temperature"]}
-            >{`${weather.temperature[temperatureScale].formattedValue}`}</p>
-            <p className={styles["weather__feels-like"]}>
-              {`feels like ${weather.feelsLike[temperatureScale].formattedValue}`}
-            </p>
+            <div className={styles["weather__current-temperature"]}>
+              <span>
+                {`${weather.temperature[temperatureScale].formattedValue}`}
+              </span>
+              <span className={styles["weather__feels-like"]}>
+                {weather.feelsLike[temperatureScale].formattedValue}
+              </span>
+            </div>
+            <div className={styles["weather__current-summary"]}>
+              <span
+                className={`${styles["weather__summary-item"]} ${styles["weather__summary-item--pressure"]}`}
+              >
+                {weather.pressure[unitSystem].formattedValue}
+              </span>
+              <span
+                className={`${styles["weather__summary-item"]} ${styles["weather__summary-item--humidity"]}`}
+              >
+                {weather.humidity.formattedValue}
+              </span>
+              <span
+                className={`${styles["weather__summary-item"]} ${styles["weather__summary-item--rain"]}`}
+              >
+                {weather.precipitation[unitSystem].formattedValue}
+              </span>
+            </div>
           </div>
         </div>
       )}
