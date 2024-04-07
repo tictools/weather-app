@@ -21,7 +21,6 @@ export function ForecastSection({ forecast, settings, shouldRender }) {
           minTemperature,
           uv,
         } = dailyForecast;
-        console.log("🚀 ~ {forecast.map ~ dailyForecast:", dailyForecast);
 
         return (
           <div key={id} className={styles["forecast__item"]}>
