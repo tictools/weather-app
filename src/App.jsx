@@ -87,6 +87,7 @@ function App() {
         <ForecastSection
           forecast={forecast}
           settings={{ temperatureScale, unitSystem }}
+          shouldRender={!error}
         />
       </main>
       <small>Last update: {weather.lastUpdated} (local time)</small>
