@@ -11,7 +11,6 @@ export function formatToSpeed({
   const formattedUnit = isMetricSystem ? "kph" : "mph";
 
   const roundedValue = roundInCase({ flag: isRounded, value });
-  // const roundedValue = isRounded ? MathService.round(value) : value;
 
   const formattedValue = `${roundedValue}/${formattedUnit}`;
 
