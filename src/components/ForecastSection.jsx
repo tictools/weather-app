@@ -13,6 +13,7 @@ export function ForecastSection({ forecast, settings, shouldRender }) {
         const {
           condition,
           date,
+          humidity,
           id,
           maxPrecipitation,
           maxTemperature,
@@ -20,13 +21,14 @@ export function ForecastSection({ forecast, settings, shouldRender }) {
           minTemperature,
           uv,
         } = dailyForecast;
+        console.log("🚀 ~ {forecast.map ~ dailyForecast:", dailyForecast);
 
         return (
           <div key={id} className={styles["forecast__item"]}>
             <ForecastWeekday date={date} condition={condition} />
             <ForecastSummary
               uv={uv.rawValue}
-              humidity={maxPrecipitation[unitSystem].formattedValue}
+              humidity={humidity.formattedValue}
               maxWind={maxWind[unitSystem].formattedValue}
               maxPrecipitation={maxPrecipitation[unitSystem].formattedValue}
             />
