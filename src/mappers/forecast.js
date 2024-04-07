@@ -32,12 +32,14 @@ function toDomain(apiForecastItemResponse) {
       [TEMPERATURE_SCALE.CELSIUS]: {
         rawValue: day?.maxtemp_c,
         formattedValue: formatToTemperature({
+          isRounded: true,
           value: day?.maxtemp_c,
         }),
       },
       [TEMPERATURE_SCALE.FAHRENHEIT]: {
         rawValue: day?.maxtemp_f,
         formattedValue: formatToTemperature({
+          isRounded: true,
           scale: TEMPERATURE_SCALE.FAHRENHEIT,
           value: day?.maxtemp_f,
         }),
@@ -47,12 +49,14 @@ function toDomain(apiForecastItemResponse) {
       [TEMPERATURE_SCALE.CELSIUS]: {
         rawValue: day?.mintemp_c,
         formattedValue: formatToTemperature({
+          isRounded: true,
           value: day?.mintemp_c,
         }),
       },
       [TEMPERATURE_SCALE.FAHRENHEIT]: {
         rawValue: day?.mintemp_f,
         formattedValue: formatToTemperature({
+          isRounded: true,
           scale: TEMPERATURE_SCALE.FAHRENHEIT,
           value: day?.mintemp_f,
         }),
