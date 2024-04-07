@@ -21,6 +21,10 @@
   --color-yellow-mustard: #ffdb58;
   --color-burgundy: #800020;
   --color-rose-gold: #b76e79;
+  --color-blue-light: #87ceeb;
+  --color-blue-dark: #4682b4;
+  --color-red-light: #ffa07a;
+  --color-red-dark: #b22222;
 }
 
 * {
